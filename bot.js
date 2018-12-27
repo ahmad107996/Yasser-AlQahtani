@@ -20,7 +20,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "M!";
+const prefix = "m!";
 /////////////////////////
 ////////////////////////
 
@@ -321,23 +321,23 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === 'M!help') {
+    if (message.content === 'm!help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت (M!)**')
+        .setDescription('**برفكس البوت (m!)**')
         .addField('play', 'لتشغيل اغنية')
         .addField('skip', 'تخطي الأغنية')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
         .addField('resume', 'تكملة الاغنية')
         .addField('queue', 'اظهار قائمة التشغيل')
         .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
-        .setFooter('(M!general_commands) لاظهار الاوامر العامة')
+        .setFooter('(m!general_commands) لاظهار الاوامر العامة')
       message.channel.send(helpEmbed);
     }
 });
 
 client.on('message', message => {
-    if (message.content === 'M!general_commands') {
+    if (message.content === 'm!general_commands') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر عامة...**')
         .addField('avatar', "افاتار الشخص المطلوب")
@@ -355,8 +355,32 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`M!play |M!help|BY ~ Yasser AlQahtani#6021|`,"http://twitch.tv/Death Shop")
+client.user.setGame(`m!play |m!help|BY ~ Yasser AlQahtani#6021|`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
 
+const adminprefix = "m!";
+const devs = ['348953140315291649'];
+client.on('message', message => {
+  var argresult = message.content.split(``).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setG')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(`${argresult} تم تغيير بلاينق إلى` )
+} else 
+  if (message.content.startsWith(adminprefix + 'setN')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(`${argresult} : تم تغيير أسم  إلى`)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setA')) {
+client.user.setAvatar(argresult);
+  message.channel.sendMessage(`${argresult} : تم تغير صورة البوت`);
+      } else     
+if (message.content.startsWith(adminprefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    message.channel.sendMessage(`تم تغيير تويتش  إلى  ${argresult}`)
+  }
+});
 client.login(process.env.BOT_TOKEN);
