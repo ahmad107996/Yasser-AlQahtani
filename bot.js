@@ -68,7 +68,7 @@ client.user.setAvatar(argresult);
 if (message.content.startsWith(adminprefix + 'setT')) {
   client.user.setGame(argresult, "https://www.twitch.tv/idk");
     message.channel.sendMessage(تم تغيير تويتش  إلى  ${argresult}`)
-  }
+  
 });
 client.on('message', async msg =>{
 	if (msg.author.bot) return undefined;
