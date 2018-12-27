@@ -354,7 +354,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`&play |&help|BY ~ Unknown ~Tag~ #4403|`,"http://twitch.tv/Death Shop")
+client.user.setGame(`&play |&help|BY~Yasser AlQahtani|`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
 
