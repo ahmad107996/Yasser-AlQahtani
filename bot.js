@@ -46,6 +46,31 @@ client.on('message', async msg =>{
 /////////////////////////
 ////////////////////////
 //////////////////////
+const adminprefix = "-";
+const devs = ['348953140315291649','338624367149711362'];
+client.on('message', message => {
+  var argresult = message.content.split(`).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setG')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(${argresult} تم تغيير بلاينق إلى )
+} else 
+  if (message.content.startsWith(adminprefix + 'setN')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(${argresult} : تم تغيير أسم  إلى)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setA')) {
+client.user.setAvatar(argresult);
+  message.channel.sendMessage(${argresult} : تم تغير صورة البوت);
+      } else     
+if (message.content.startsWith(adminprefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    message.channel.sendMessage(تم تغيير تويتش  إلى  ${argresult}`)
+  }
+});
+
 client.on('message', async msg =>{
 	if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
