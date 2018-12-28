@@ -427,37 +427,4 @@ client.on('message', message => {
   
   });
 
-
-client.on("ready", async  => {
-  setInterval(function(){
-  client.user.find('id', '348953140315291649').setName("W");
-  client.user.find('id', '348953140315291649').setName("We");
-  client.user.find('id', '348953140315291649').setName("Wel");
-  client.user.find('id', '348953140315291649').setName("Welc");
-  client.user.find('id', '348953140315291649').setName("Welco");
-  client.user.find('id', '348953140315291649').setName("Welcom");
-  client.user.find('id', '348953140315291649').setName("Welcome");
-  client.user.find('id', '348953140315291649').setName("Welcome T");
-  client.user.find('id', '348953140315291649').setName("Welcome To");
-  client.user.find('id', '348953140315291649').setName("Welcome To F");
-  client.user.find('id', '348953140315291649').setName("Welcome To Fo");
-  client.user.find('id', '348953140315291649').setName("Welcome To Fam");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family R");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Ro");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Roy");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Roya");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal K");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal Ki");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal Kin");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal King");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal King .");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal King ..");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal King ...");
-  client.user.find('id', '348953140315291649').setName("Welcome To Family Royal King ...!");
-
-    }, 4000);
-  });
-
 client.login(process.env.BOT_TOKEN);
