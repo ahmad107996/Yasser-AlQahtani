@@ -364,11 +364,6 @@ client.user.setStatus("dnd")
 });
 
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag} !`);
-        client.user.setActivity(" yhelp .",{type: 'WATCHING'});
-
-});
 client.on("message", message => {
   fs.writeFile('./suck.json', JSON.stringify(suck));
 });
@@ -405,7 +400,7 @@ client.on("message", message => {
 });
 
  client.on('message', message => {
-   if(message.content.startsWith(`r#inv`)){
+   if(message.content.startsWith(`yinv`)){
      if(!message.channel.guild) return message.channel.send("This Command is Just For Servers!")
                message.react('🌈')
      var embed = new Discord.RichEmbed()
