@@ -20,7 +20,9 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "m!";
+const suck = JSON.parse(fs.readFileSync('./suck.json', 'utf8'));
+
+const prefix = "y";
 /////////////////////////
 ////////////////////////
 
@@ -321,28 +323,30 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === 'm!help') {
+    if (message.content === 'yhelp') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت (m!)**')
+        .setDescription('**برفكس البوت (y)**')
         .addField('play', 'لتشغيل اغنية')
         .addField('skip', 'تخطي الأغنية')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
         .addField('resume', 'تكملة الاغنية')
         .addField('queue', 'اظهار قائمة التشغيل')
         .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
-        .setFooter('(m!general_commands) لاظهار الاوامر العامة')
+        .setFooter('(ygeneral_commands) لاظهار الاوامر العامة')
       message.channel.send(helpEmbed);
     }
 });
 
 client.on('message', message => {
-    if (message.content === 'm!general_commands') {
+    if (message.content === 'ygeneral_commands') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر عامة...**')
         .addField('avatar', "افاتار الشخص المطلوب")
         .addField('gif', 'البحث عن جيف انت تطلبه')
         .addField('ping', 'معرفة ping البوت')
+        .addField('set', ' - لإنشاء رتبة الرينبو وبدا الرينبو')
+        .addField('inv', '- لدعوة البوت')
         .setFooter('المزيد قريبا ان شاء الله!')
       message.channel.send(helpEmbed);
     }
@@ -355,32 +359,62 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`m!play |m!help|BY ~ Yasser AlQahtani#6021|`,"http://twitch.tv/Death Shop")
+client.user.setGame(`yplay |yhelp|BY ~ Yasser AlQahtani#6021|`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
 
-const adminprefix = "m!";
-const devs = ['348953140315291649'];
-client.on('message', message => {
-  var argresult = message.content.split(``).slice(1).join(' ');
-    if (!devs.includes(message.author.id)) return;
-    
-if (message.content.startsWith(adminprefix + 'setG')) {
-  client.user.setGame(argresult);
-    message.channel.sendMessage(`${argresult} تم تغيير بلاينق إلى` )
-} else 
-  if (message.content.startsWith(adminprefix + 'setN')) {
-client.user.setUsername(argresult).then
-    message.channel.sendMessage(`${argresult} : تم تغيير أسم  إلى`)
-return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
-} else
-  if (message.content.startsWith(adminprefix + 'setA')) {
-client.user.setAvatar(argresult);
-  message.channel.sendMessage(`${argresult} : تم تغير صورة البوت`);
-      } else     
-if (message.content.startsWith(adminprefix + 'setT')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
-    message.channel.sendMessage(`تم تغيير تويتش  إلى  ${argresult}`)
-  }
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag} !`);
+        client.user.setActivity(" yhelp .",{type: 'WATCHING'});
+
 });
+client.on("message", message => {
+  fs.writeFile('./suck.json', JSON.stringify(suck));
+});
+
+client.on('ready', () => {
+  setInterval(function(){
+      client.guilds.forEach(g => {
+          if (suck[g.id]) {
+              if (suck[g.id].role) {
+                  var role = g.roles.get(suck[g.id].role);
+                  if (role) {
+                      role.edit({color : "RANDOM"});
+                  };
+              }; 
+          };
+      });
+  }, 4000);
+})
+
+client.on("message", message => {
+  if (!message.content.startsWith(prefix)) return;
+  if (message.author.bot) return;
+  if (message.channel.type !== "text") return message.reply("This Command Is Only Allowed In Servers");
+  var args = message.content.split(" ");
+  var command = args[0].slice(prefix.length);
+  switch(command) {
+      case "set" :
+      if(!message.member.hasPermission('ADMINSTRATOR')) return message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINSTRATOR`' );
+      message.guild.createRole({name : "RainbowBot .", color : "RANDOM"}).then(r => {
+          r.edit({color : "RANDOM"});
+          suck[message.guild.id] = {role : r.id};
+      });
+  };
+});
+
+ client.on('message', message => {
+   if(message.content.startsWith(`r#inv`)){
+     if(!message.channel.guild) return message.channel.send("This Command is Just For Servers!")
+               message.react('🌈')
+     var embed = new Discord.RichEmbed()
+     .setTitle(">> ClickHere To Add" + `${client.user.username}` + " <<")
+     .setURL("https://discordapp.com/oauth2/authorize?client_id=527822574609235986&permissions=8&scope=bot" + `${client.user.id}` + "&scope=bot&permissions=2080374975")
+     .setTimestamp()
+     .setFooter(`Requested By | ${message.author.username}`)
+     .setColor("RANDOM")
+     message.author.send({embed})
+   }
+ });
 client.login(process.env.BOT_TOKEN);
