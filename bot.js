@@ -428,7 +428,6 @@ client.on('message', message => {
   
   });
 
-Toxic Codes© :arrow_down:
 client.on('message', message => { //Toxic Codes
     if (message.author.bot) return;//Toxic Codes
     if(message.content == 'm!mb') {//Toxic Codes
