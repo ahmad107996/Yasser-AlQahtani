@@ -348,6 +348,7 @@ client.on('message', message => {
         .addField('gif', 'البحث عن جيف انت تطلبه')
         .addField('ping', 'معرفة ping البوت')
         .addField('inv', '- لدعوة البوت')
+	.addField('mb', 'معرفت حالة اعضاء السيرفر')
         .setFooter('المزيد قريبا ان شاء الله!')
       message.channel.send(helpEmbed);
     }
@@ -426,5 +427,22 @@ client.on('message', message => {
     }
   
   });
+
+Toxic Codes© :arrow_down:
+client.on('message', message => { //Toxic Codes
+    if (message.author.bot) return;//Toxic Codes
+    if(message.content == 'm!mb') {//Toxic Codes
+    const embed = new Discord.RichEmbed()//Toxic Codes
+    .addField(`حالة الأعضاء 🔋`,'-',   true)//Toxic Codes
+.addField(`💚 اونلاين :   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)//Toxic Codes
+.addField(`❤ مشغول :     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)//Toxic Codes
+.addField(`💛 خامل :      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)//Toxic Codes
+.addField(`🖤 اوفلاين :   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true)//Toxic Codes
+.addField(`💙   الكل :  ${message.guild.memberCount}`,'-',   true)//Toxic Codes
+         message.channel.send({embed});
+
+    }//Toxic Codes
+
+  });//Toxic Codes
 
 client.login(process.env.BOT_TOKEN);
