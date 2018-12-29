@@ -447,8 +447,8 @@ client.on('message', message => { //Toxic Codes
 
 client.on('ready',async () => {//Toxic Codes
 console.log("Starting..");//Toxic Codes
-let g = client.guilds.get("528649421974405120"); // id server
-let c = g.channels.get("528649421974405130");// id channel
+let g = client.guilds.get("528649421974405120" , "274665615833432064"); // id server
+let c = g.channels.get("528649421974405130" , "344179333469962242");// id channel
 if(c.type === 'voice') {//Toxic Codes
 c.join();//Toxic Codes
 setInterval(() => {//Toxic Codes
