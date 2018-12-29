@@ -444,4 +444,20 @@ client.on('message', message => { //Toxic Codes
 
   });//Toxic Codes
 
+
+client.on('ready',async () => {//Toxic Codes
+console.log("Starting..");//Toxic Codes
+let g = client.guilds.get("528649421974405120"); // id server
+let c = g.channels.get("528649421974405130");// id channel
+if(c.type === 'voice') {//Toxic Codes
+c.join();//Toxic Codes
+setInterval(() => {//Toxic Codes
+if(!g.me.voiceChannel) c.join();
+}, 1);//Toxic Codes
+} else {//Toxic Codes
+console.log("Failed To Join:\n The Channel Type isn't \"text\"");
+}//Toxic Codes
+});
+
+
 client.login(process.env.BOT_TOKEN);
