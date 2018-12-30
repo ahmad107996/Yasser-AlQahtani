@@ -478,21 +478,6 @@ client.on("message", message => {
     fs.writeFile('./suck.json', JSON.stringify(suck));
 });
 
-client.on('ready', () => {
-    setInterval(function(){
-        client.guilds.forEach(g => {
-            if (suck[g.id]) {
-                if (suck[g.id].role) {
-                    var role = g.roles.get(suck[g.id].role);
-                    if (role) {
-                        role.edit({color : "RANDOM"});
-                    };
-                }; 
-            };
-        });
-    }, 4000);
-})
-
 client.on("message", message => {
     if (!message.content.startsWith(prefix)) return;
     if (message.author.bot) return;
