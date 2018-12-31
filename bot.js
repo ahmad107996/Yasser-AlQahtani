@@ -760,7 +760,7 @@
   } else { 
   safety[anti.executor.id].actions+=1
   if (safety[anti.executor.id].actions == 3) {
-  client.members.get(anti.executor.id).ban("Griefing")
+  client.members.get(anti.executor.id).ban("محاولت تهكير")
   console.log("banned griefer 1")
   safety[anti.executor.id].actions = 0
   }
