@@ -547,68 +547,230 @@ client.on('message', function(msg) {
     }
   });
 
-client.on('message', rw => {//Toixc Codes 
-  if (rw.content.startsWith('vb')) {//Toixc Codes 
+client.on('message', rw => { 
+  if (rw.content.startsWith('vb')) { 
 if (!rw.member.hasPermission("MOVE_MEMBERS")) return rw.channel.send("**YOU DONT HAVE PERMISSION** | ❎ ");
-let men = rw.mentions.users.first()//Toixc Codes 
-let mas = rw.author//Toixc Codes 
-if(!men) return rw.channel.send('``');//Toixc Codes 
+let men = rw.mentions.users.first() 
+let mas = rw.author 
+if(!men) return rw.channel.send('``'); 
 rw.guild.channels.forEach(c => {
-c.overwritePermissions(men.id, {//Toixc Codes 
+c.overwritePermissions(men.id, { 
           CONNECT: false
 })
     })
 const embed = new Discord.RichEmbed()
-.setColor("RANDOM")//Toixc Codes 
+.setColor("RANDOM") 
 .setDescription(`**
  <@${men.id}>
 YOU CANT JOIN THE VOICE ROOM
-BANNER : <@${rw.author.id}> **`)//Toixc Codes 
+BANNER : <@${rw.author.id}> **`) 
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
           
 client.users.get(men.id).sendEmbed(embed)
-const Embed11 = new Discord.RichEmbed()//Toixc Codes 
+const Embed11 = new Discord.RichEmbed() 
 .setColor("RANDOM")
 .setAuthor(rw.guild.name, rw.guild.iconURL)
 .setDescription(`          <@${men.id}>
-BANNED//Toixc Codes 
+BANNED 
 BANNER : <@${rw.author.id}> `)
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
 rw.channel.sendEmbed(Embed11).then(rw => {rw.delete(10000)})
     }
 })
  
- //فكه//Toixc Codes 
-client.on('message', rw => {//Toixc Codes 
+ //فكه 
+client.on('message', rw => { 
   if (rw.content.startsWith('uvb')) {
 if (!rw.member.hasPermission("MOVE_MEMBERS")) return rw.channel.send("**YOU DONT HAVE PERMISSION** | ❎ ");
  let men = rw.mentions.users.first()
- let mas = rw.author//Toixc Codes 
- if(!men) return rw.channel.send('`MANTION THE MEMBER `');//Toixc Codes 
- rw.guild.channels.forEach(c => {//Toixc Codes 
- c.overwritePermissions(men.id, {//Toixc Codes 
-         CONNECT: true//Toixc Codes 
+ let mas = rw.author 
+ if(!men) return rw.channel.send('`MANTION THE MEMBER `'); 
+ rw.guild.channels.forEach(c => { 
+ c.overwritePermissions(men.id, { 
+         CONNECT: true 
  })
-    })//Toixc Codes 
-const embed = new Discord.RichEmbed()//Toixc Codes 
-.setColor("RANDOM")//Toixc Codes 
+    }) 
+const embed = new Discord.RichEmbed() 
+.setColor("RANDOM") 
 .setDescription(`**
- <@${men.id}>//Toixc Codes 
+ <@${men.id}> 
  Welcome Back
-Back With : <@${rw.author.id}> **`)//Toixc Codes 
+Back With : <@${rw.author.id}> **`) 
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
           
-client.users.get(men.id).sendEmbed(embed)//Toixc Codes 
-const Embed11 = new Discord.RichEmbed()//Toixc Codes 
+client.users.get(men.id).sendEmbed(embed) 
+const Embed11 = new Discord.RichEmbed() 
 .setColor("RANDOM")
-.setAuthor(rw.guild.name, rw.guild.iconURL)//Toixc Codes 
+.setAuthor(rw.guild.name, rw.guild.iconURL) 
 .setDescription(`          <@${men.id}>
 GO FOR VOICE NOW
-With : <@${rw.author.id}>//Toixc Codes 
-`)//Toixc Codes 
+With : <@${rw.author.id}> 
+`) 
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
-rw.channel.sendEmbed(Embed11).then(rw => {rw.delete(15000)})//Toixc Codes 
-    }//Toixc Codes 
-}) //Toixc Codes
+rw.channel.sendEmbed(Embed11).then(rw => {rw.delete(15000)}) 
+    } 
+}) 
+
+
+
+const safety = JSON.parse(fs.readFileSync('./nomore.json', 'utf8'));  
+client.on("message", message =>{ 
+if(!safety[message.author.id]) { 
+safety[message.author.id] = { 
+actions: 0
+}} 
+}) 
+// سوي ملف باسم safety.json
+ 
+client.on('guildMemberRemove', Toxic => {
+Toxic.guild.fetchAuditLogs().then( ac => {  
+var anti = ac.entries.first(); 
+if(anti.action == "MEMBER_KICK") { 
+if(!safety[anti.executor.id]) {  
+safety[anti.executor.id] = { 
+actions: 0  
+};
+} else {  
+safety[anti.executor.id].actions+=1 
+if (safety[anti.executor.id].actions == 5) { 
+Toxic.guild.members.get(anti.executor.id).ban("Griefing") 
+console.log("banned griefer 1") 
+safety[anti.executor.id].actions = 0 
+} 
+} 
+    } 
+    }); 
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{ 
+        if (err) console.log(err.message); 
+    }); 
+}); 
+
+
+
+
+
+client.on('roleDelete', Toxic => { 
+Toxic.guild.fetchAuditLogs().then( ac => { 
+var anti = ac.entries.first();
+if(anti.action == "ROLE_DELETE") { 
+if(!safety[anti.executor.id]) { 
+safety[anti.executor.id] = { 
+actions: 0 
+};
+} else {  
+safety[anti.executor.id].actions+=1 
+if (safety[anti.executor.id].actions == 3) { 
+Toxic.guild.members.get(anti.executor.id).ban("Griefing") 
+console.log("banned griefer 1") 
+safety[anti.executor.id].actions = 0 
+} 
+}
+    } 
+    }); 
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{ 
+        if (err) console.log(err.message);
+    }); 
+});
+
+
+
+
+client.on('channelDelete', Toxic => { 
+Toxic.guild.fetchAuditLogs().then( ac => { 
+var anti = ac.entries.first(); 
+if(anti.action == "CHANNEL_DELETE") {
+if(!safety[anti.executor.id]) {
+safety[anti.executor.id] = { 
+actions: 0
+}; 
+} else { 
+safety[anti.executor.id].actions+=1 
+if (safety[anti.executor.id].actions == 1) { 
+Toxic.guild.members.get(anti.executor.id).ban("Griefing")
+console.log("banned griefer 1")
+safety[anti.executor.id].actions = 0 
+}
+}
+    }
+    }); 
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{
+        if (err) console.log(err.message); 
+    }); 
+}); 
+
+
+client.on('roleCreate', Toxic => { 
+Toxic.guild.fetchAuditLogs().then( ac => { 
+var anti = ac.entries.first(); 
+if(anti.action == "ROLE_CREATE") { 
+if(!safety[anti.executor.id]) { 
+safety[anti.executor.id] = { 
+actions: 0 
+}; 
+} else {  
+safety[anti.executor.id].actions+=1 
+if (safety[anti.executor.id].actions == 4) { 
+Toxic.guild.members.get(anti.executor.id).ban("Griefing") 
+console.log("banned griefer 1") 
+safety[anti.executor.id].actions = 0
+} 
+} 
+    } 
+    }); 
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{ 
+        if (err) console.log(err.message); 
+    }); 
+});
+
+
+
+
+client.on('channelCreate', Toxic => {
+Toxic.guild.fetchAuditLogs().then( ac => {
+var anti = ac.entries.first();
+if(anti.action == "CHANNEL_CREATE") {
+if(!safety[anti.executor.id]) {
+safety[anti.executor.id] = {
+actions: 0
+};
+} else { 
+safety[anti.executor.id].actions+=1
+if (safety[anti.executor.id].actions == 3) {
+Toxic.guild.members.get(anti.executor.id).ban("Griefing")
+console.log("banned griefer 1")
+safety[anti.executor.id].actions = 0
+}
+}
+    }
+    });
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{
+        if (err) console.log(err.message);
+    });
+});
+
+
+client.on('guildBanAdd', function(Toxic){
+Toxic.fetchAuditLogs().then( ac => {
+var anti = ac.entries.first();
+if(anti.action == "MEMBER_BAN_ADD") {
+if(!safety[anti.executor.id]) {
+safety[anti.executor.id] = {
+actions: 0
+};
+} else { 
+safety[anti.executor.id].actions+=1
+if (safety[anti.executor.id].actions == 3) {
+Toxic.members.get(anti.executor.id).ban("Griefing")
+console.log("banned griefer 1")
+safety[anti.executor.id].actions = 0
+}
+}
+    }
+    });
+    fs.writeFile("./safety.json", JSON.stringify(safety) ,(err) =>{
+        if (err) console.log(err.message);
+    });
+});
+
 
 client.login(process.env.BOT_TOKEN);
