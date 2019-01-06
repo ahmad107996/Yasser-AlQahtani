@@ -773,4 +773,34 @@
   });
 
 
+client.on("ready", async  => {
+  setInterval(function(){
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("W");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("We");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Wel");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welc");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welco");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcom");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome T");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To F");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Fa");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Fam");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Fami");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Famil");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family R");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Ro");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Roy");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Roya");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Royal");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Royal K");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Royal Ki");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Royal Kin");//Toxic Codes
+  client.channels.find('439038757715574804','439038775663001610','439038724400218113').setName("Welcome To Family Royal King...!");//Toxic Codes
+
+    }, 4000);
+  });
+
   client.login(process.env.BOT_TOKEN);
