@@ -351,6 +351,8 @@
     .addField('mb', 'معرفت حالة اعضاء السيرفر')
     .addField('id', 'معلومات شخصية')
     .addField('server', 'معلومات السيرفر')
+          .addField('vb', 'باند من الرومات الصوتيه')
+          .addField('uvb', 'فك الباند من الرومات الصويته')
           .setFooter('المزيد قريبا ان شاء الله!')
         message.channel.send(helpEmbed);
       }
@@ -424,7 +426,7 @@
           console.log(`⚠️ Bot restarting... ⚠️`);
           console.log("===============================================\n\n");
           client.destroy();
-          child_process.fork(__dirname + "/bot.js");
+          client.process.fork(__dirname + "/bot.js");
           console.log(`Bot Successfully Restarted`);
       }
     
@@ -548,7 +550,7 @@
     });
 
   client.on('message', rw => { 
-    if (rw.content.startsWith('vb')) { 
+    if (rw.content.startsWith('m!vb')) { 
   if (!rw.member.hasPermission("MOVE_MEMBERS")) return rw.channel.send("**YOU DONT HAVE PERMISSION** | ❎ ");
   let men = rw.mentions.users.first() 
   let mas = rw.author 
@@ -580,7 +582,7 @@
   
   //فكه 
   client.on('message', rw => { 
-    if (rw.content.startsWith('uvb')) {
+    if (rw.content.startsWith('m!uvb')) {
   if (!rw.member.hasPermission("MOVE_MEMBERS")) return rw.channel.send("**YOU DONT HAVE PERMISSION** | ❎ ");
   let men = rw.mentions.users.first()
   let mas = rw.author 
