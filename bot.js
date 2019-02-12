@@ -472,8 +472,6 @@ let embed = new Discord.RichEmbed()
   });
 
 
-  const devs = ["348953140315291649"]
-
   const adminprefix = "m!";
   client.on('message', message => {
       var argresult = message.content.split(` `).slice(1).join(' ');
